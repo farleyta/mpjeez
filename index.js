@@ -17,7 +17,7 @@ app.set('port', (process.env.PORT || 5000));
 
 // DATABASE
 // =============================================================================
-mongoose.connect('mongodb://' + process.env.MONGOLAB_URI + '/heroku_app34898694');
+mongoose.connect(process.env.MONGOLAB_URI);
 
 
 // ROUTES FOR OUR API
