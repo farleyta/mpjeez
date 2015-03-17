@@ -1,0 +1,6 @@
+{
+  "name": "MPJeez",
+  "description": "A small utility for tracking fuel economy.",
+  "repository": "https://github.com/farleyta/mpjeez",
+  "keywords": ["node", "express", "fuel economy", "mpg"]
+}
