@@ -39,6 +39,7 @@ module.exports = (function() {
 			entry.milesOnTank = req.body.milesOnTank;  // set the entries milesOnTank (comes from the request)
 			entry.gallonsAdded = req.body.gallonsAdded;  // set the entries gallonsAdded (comes from the request)
 			entry.cost = req.body.cost;  // set the entries cost (comes from the request)
+			entry.date = req.body.date;  // set the entries date (comes from the request)
 			entry.odometer = req.body.odometer;  // set the entries odometer (comes from the request)
 			entry.notes = req.body.notes;  // set the entries notes (comes from the request)
 			entry.updated = req.body.updated;  // set the entries updated (comes from the request)

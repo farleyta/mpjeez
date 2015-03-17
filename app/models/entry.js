@@ -31,6 +31,10 @@ var EntrySchema   = new Schema({
 	cost: { 
 		type: Number
 	},
+	date: { 
+		type: Date,
+		default: Date.now
+	},
 	odometer: { 
 		type: Number 
 	},
