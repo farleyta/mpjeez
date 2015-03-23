@@ -31,25 +31,17 @@ module.exports = (function() {
 		// create an entry (accessed at /api/entries)
 		.post(function(req, res) {
 			
-			var entry = new Entry();      // create a new instance of the Entry model
-			entry.username = req.body.username;  // set the entries username (comes from the request)
-			entry.vehicle.make = req.body.vehicle.make;  // set the entries vehicle.make (comes from the request)
-			entry.vehicle.model = req.body.vehicle.model;  // set the entries vehicle.model (comes from the request)
-			entry.vehicle.year = req.body.vehicle.year;  // set the entries vehicle.year (comes from the request)
-			entry.milesOnTank = req.body.milesOnTank;  // set the entries milesOnTank (comes from the request)
-			entry.gallonsAdded = req.body.gallonsAdded;  // set the entries gallonsAdded (comes from the request)
-			entry.cost = req.body.cost;  // set the entries cost (comes from the request)
-			entry.date = req.body.date;  // set the entries date (comes from the request)
-			entry.odometer = req.body.odometer;  // set the entries odometer (comes from the request)
-			entry.notes = req.body.notes;  // set the entries notes (comes from the request)
-			entry.updated = req.body.updated;  // set the entries updated (comes from the request)
+			var entry = new Entry(req.body);      // create a new instance of the Entry model
 
 			// save the entry and check for errors
 			entry.save(function(err) {
 				if (err)
 					res.send(err);
 
-				res.json({ message: 'Entry created for ' + entry.username });
+				res.json({ 
+					message: 'Entry successfully created for ' + entry._user.email,
+					entry: entry
+				});
 			});
 			
 		});
@@ -70,32 +62,42 @@ module.exports = (function() {
 
 		// update a specific entry
 		.put(function(req, res){
-			Entry.findById(req.params.entry_id, function(err, entry){
+			// Entry.findById(req.params.entry_id, function(err, entry){
+			// 	if (err)
+			// 		res.send(err);
+
+			// 	// merge any new properties with the original
+			// 	entry = merge(entry, req.body);
+
+			// 	entry.save(function(err){
+			// 		if (err)
+			// 			res.send(err);
+
+			// 		res.json({ message: "Entry updated for " + entry._id})
+			// 	});
+			// });
+			
+			Entry.findOneAndUpdate({_id: req.params.entry_id}, req.body, function(err, entry){
 				if (err)
 					res.send(err);
 
-				// merge any new properties with the original
-				entry = merge(entry, req.body);
-
-				entry.save(function(err){
-					if (err)
-						res.send(err);
-
-					res.json({ message: "Entry updated for " + entry._id})
+				res.json({
+					message: "Entry successfully updated.",
+					entry: entry
 				});
 			});
 		})
 		
 		// delete a specific entry
 		.delete(function(req, res){
-			Entry.remove({
-				_id: req.params.entry_id
-			},
-			function(err, entry){
+			Entry.findOneAndRemove({_id: req.params.entry_id}, function(err, entry){
 				if (err)
 					res.send(err);
 
-				res.json({message: "Successfully deleted."});
+				res.json({
+					message: "Entry successfully deleted.",
+					entry: entry
+				});
 			});
 		});
 
