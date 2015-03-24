@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGOLAB_URI);
 
 // ROUTES FOR OUR API
 // =============================================================================
-var api = require('./app/routes/api'); 		// Routes for the API
+var api = require('./app/routes/api/api'); 		// Routes for the API
 var router = require('./app/routes/web'); 	// Routes for normal web calls
 
 // Middleware for all requests
