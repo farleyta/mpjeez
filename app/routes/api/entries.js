@@ -3,7 +3,7 @@ var express = require('express'),
 
 module.exports = function(api) {
 
-	var Entry = require('../models/entry');
+	var Entry = require('../../models/entry');
 
 	// on routes that end in /entries	
 	// ----------------------------------------------------
