@@ -1,6 +1,3 @@
-var express = require('express'),
-	api = express.Router();
-
 module.exports = function(api) {
 
 	var Entry = require('../../models/entry');

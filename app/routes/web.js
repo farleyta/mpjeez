@@ -1,15 +1,31 @@
 //================================== routes for index and partials================================
+var express = require('express'),
+	router = express.Router(),
+	React = require('react');
 
-var express = require('express');
+	require("node-jsx").install({
+		harmony: true,
+		extension: ".jsx"
+	});
 
 module.exports = (function() {
-	'use strict';
 
-	var router = express.Router();
+	var App = React.createFactory(require("../components/app"));
 
-	// test route to make sure everything is working (accessed at GET http://localhost:8080/)
 	router.get('/', function(req, res) {
-		res.json({ message: 'MPJeez Home Page.' });   
+		res.json({ message: 'MPJeez Home Page.' }); 
+	});
+
+	router.get('/test', function(req, res) {
+		var markup = React.renderToString(
+			App({
+				text: "Testing"
+			})
+		);
+
+		res.render('index', {
+			markup: markup
+		});
 	});
 
 	return router;

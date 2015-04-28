@@ -2,17 +2,26 @@
 // =============================================================================
 
 var express = require('express'),
+	expressHandlebars = require('express-handlebars'),
 	mongoose = require('mongoose'),
 	bodyParser = require('body-parser'),
 	merge = require('merge');
 
 var app = express();
+var viewsDir = __dirname + '/app/views/templates';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.engine('handlebars', expressHandlebars({
+	layoutsDir: viewsDir
+}));
+app.set('view engine', 'handlebars');
+app.set('views', viewsDir);
+
 app.set('port', (process.env.PORT || 5000));
-// app.use(express.static(__dirname + '/public'));
+
+
 
 
 // DATABASE
@@ -27,6 +36,12 @@ var router = require('./app/routes/web'); 	// Routes for normal web calls
 
 // Middleware for all requests
 router.use(function(req, res, next) {
+	// do logging
+	console.log('Do some middleware stuff here.');
+	next(); // make sure we go to the next routes and don't stop here
+});
+// Middleware for all requests
+api.use(function(req, res, next) {
 	// do logging
 	console.log('Do some middleware stuff here.');
 	next(); // make sure we go to the next routes and don't stop here
