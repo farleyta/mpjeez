@@ -1,10 +1,20 @@
 var React = require("react");
 
 var App = React.createClass({
-	render() {
-		return (
-			<h1 className="title">{this.props.text}</h1>
-		);
+	getInitialState: function() {
+		return {
+			count: this.props.initialCount
+		};
+	},
+
+	_increment: function() {
+		this.setState({ count: this.state.count + 1 });
+	},
+
+	render: function() {
+		return <div className="test-div" onClick={this._increment}>
+			{this.state.count}
+		</div>;
 	}
 });
 

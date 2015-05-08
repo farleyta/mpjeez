@@ -14,7 +14,9 @@
     "merge": "^1.2.0",
     "express-handlebars": "^2.0.1",
     "react": "^0.13.2",
-    "node-jsx": "^0.13.2"
+    "node-jsx": "^0.13.2",
+    "webpack": "^1.8.11",
+    "jsx-loader": "^0.13.2"
   },
   "engines": {
     "node": "0.10.x"

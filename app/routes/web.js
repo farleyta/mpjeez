@@ -18,9 +18,7 @@ module.exports = (function() {
 
 	router.get('/test', function(req, res) {
 		var markup = React.renderToString(
-			App({
-				text: "Testing"
-			})
+			App({ initialCount: 7 })
 		);
 
 		res.render('index', {

@@ -19,6 +19,8 @@ app.engine('handlebars', expressHandlebars({
 app.set('view engine', 'handlebars');
 app.set('views', viewsDir);
 
+app.use(express.static('public'));
+
 app.set('port', (process.env.PORT || 5000));
 
 
