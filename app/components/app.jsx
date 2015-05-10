@@ -5,8 +5,9 @@ var calculate = require("../controllers/calculate");
 
 var MilesSinceFill = React.createClass({
 	handleChange: function(event) {
-		console.log("Miles:" + event.target.value);
-		this.setState({value: event.target.value});
+		var miles = event.target.value;
+		this.setState({value: miles});
+		this.props.handleChange("Miles:" + miles);
 	},
 	render: function() {
 		return <div>
@@ -17,8 +18,9 @@ var MilesSinceFill = React.createClass({
 
 var GallonsAdded = React.createClass({
 	handleChange: function(event) {
-		console.log("Gallons:" + event.target.value);
-		this.setState({value: event.target.value});
+		var gallons = event.target.value;
+		this.setState({value: gallons});
+		this.props.handleChange("Gallons:" + gallons);
 	},
 	render: function() {
 		return <div>
@@ -28,11 +30,18 @@ var GallonsAdded = React.createClass({
 });
 
 var App = React.createClass({
+	getCurrentMPGs: function(input){
+		console.log(input);
+	},
+
 	render: function() {
 		return (
 			<div>
-				<MilesSinceFill />
-				<GallonsAdded />
+				<div>
+					<MilesSinceFill handleChange={this.getCurrentMPGs} />
+					<GallonsAdded handleChange={this.getCurrentMPGs} />
+				</div>
+				<div className="current-mpg"></div>
 			</div>
 		);
 	}

@@ -20367,8 +20367,9 @@
 
 	var MilesSinceFill = React.createClass({displayName: "MilesSinceFill",
 		handleChange: function(event) {
-			console.log("Miles:" + event.target.value);
-			this.setState({value: event.target.value});
+			var miles = event.target.value;
+			this.setState({value: miles});
+			this.props.handleChange("Miles:" + miles);
 		},
 		render: function() {
 			return React.createElement("div", null, 
@@ -20379,8 +20380,9 @@
 
 	var GallonsAdded = React.createClass({displayName: "GallonsAdded",
 		handleChange: function(event) {
-			console.log("Gallons:" + event.target.value);
-			this.setState({value: event.target.value});
+			var gallons = event.target.value;
+			this.setState({value: gallons});
+			this.props.handleChange("Gallons:" + gallons);
 		},
 		render: function() {
 			return React.createElement("div", null, 
@@ -20390,11 +20392,18 @@
 	});
 
 	var App = React.createClass({displayName: "App",
+		getCurrentMPGs: function(input){
+			console.log(input);
+		},
+
 		render: function() {
 			return (
 				React.createElement("div", null, 
-					React.createElement(MilesSinceFill, null), 
-					React.createElement(GallonsAdded, null)
+					React.createElement("div", null, 
+						React.createElement(MilesSinceFill, {handleChange: this.getCurrentMPGs}), 
+						React.createElement(GallonsAdded, {handleChange: this.getCurrentMPGs})
+					), 
+					React.createElement("div", {className: "current-mpg"})
 				)
 			);
 		}
