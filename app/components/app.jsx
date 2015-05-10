@@ -1,20 +1,40 @@
+/** @jsx React.DOM */
+
 var React = require("react");
+var calculate = require("../controllers/calculate");
+
+var MilesSinceFill = React.createClass({
+	handleChange: function(event) {
+		console.log("Miles:" + event.target.value);
+		this.setState({value: event.target.value});
+	},
+	render: function() {
+		return <div>
+				<input placeholder="miles since last fill" type="text" onChange={this.handleChange} />
+			</div>;
+	}
+});
+
+var GallonsAdded = React.createClass({
+	handleChange: function(event) {
+		console.log("Gallons:" + event.target.value);
+		this.setState({value: event.target.value});
+	},
+	render: function() {
+		return <div>
+				<input placeholder="total gallons added" type="text" onChange={this.handleChange} />
+			</div>;
+	}
+});
 
 var App = React.createClass({
-	getInitialState: function() {
-		return {
-			count: this.props.initialCount
-		};
-	},
-
-	_increment: function() {
-		this.setState({ count: this.state.count + 1 });
-	},
-
 	render: function() {
-		return <div className="test-div" onClick={this._increment}>
-			{this.state.count}
-		</div>;
+		return (
+			<div>
+				<MilesSinceFill />
+				<GallonsAdded />
+			</div>
+		);
 	}
 });
 

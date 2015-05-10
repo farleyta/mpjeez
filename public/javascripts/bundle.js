@@ -49,7 +49,7 @@
 
 	if (typeof window !== "undefined") {
 	    window.onload = function() {
-	        React.render(App({ initialCount: 7 }), document.getElementById("content"));
+	        React.render(App(), document.getElementById("content"));
 	    };
 	}
 
@@ -20360,27 +20360,60 @@
 /* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/** @jsx React.DOM */
+
 	var React = __webpack_require__(1);
+	var calculate = __webpack_require__(158);
+
+	var MilesSinceFill = React.createClass({displayName: "MilesSinceFill",
+		handleChange: function(event) {
+			console.log("Miles:" + event.target.value);
+			this.setState({value: event.target.value});
+		},
+		render: function() {
+			return React.createElement("div", null, 
+					React.createElement("input", {placeholder: "miles since last fill", type: "text", onChange: this.handleChange})
+				);
+		}
+	});
+
+	var GallonsAdded = React.createClass({displayName: "GallonsAdded",
+		handleChange: function(event) {
+			console.log("Gallons:" + event.target.value);
+			this.setState({value: event.target.value});
+		},
+		render: function() {
+			return React.createElement("div", null, 
+					React.createElement("input", {placeholder: "total gallons added", type: "text", onChange: this.handleChange})
+				);
+		}
+	});
 
 	var App = React.createClass({displayName: "App",
-		getInitialState: function() {
-			return {
-				count: this.props.initialCount
-			};
-		},
-
-		_increment: function() {
-			this.setState({ count: this.state.count + 1 });
-		},
-
 		render: function() {
-			return React.createElement("div", {className: "test-div", onClick: this._increment}, 
-				this.state.count
+			return (
+				React.createElement("div", null, 
+					React.createElement(MilesSinceFill, null), 
+					React.createElement(GallonsAdded, null)
+				)
 			);
 		}
 	});
 
 	module.exports = App;
+
+/***/ },
+/* 158 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var calculate = function () {};
+
+	// getFuelEconomy - a function for calculating miles per gallon
+	calculate.prototype.getFuelEconomy = function (distanceTraveled, fuelConsumed) {
+		return (distanceTraveled / fuelConsumed).toFixed(3);
+	};
+
+	module.exports = new calculate();
 
 /***/ }
 /******/ ]);

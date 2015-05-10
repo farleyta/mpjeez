@@ -3,6 +3,6 @@ var React = require("react"),
 
 if (typeof window !== "undefined") {
     window.onload = function() {
-        React.render(App({ initialCount: 7 }), document.getElementById("content"));
+        React.render(App(), document.getElementById("content"));
     };
 }
