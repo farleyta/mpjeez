@@ -2,47 +2,20 @@
 
 var React = require("react");
 var calculate = require("../controllers/calculate");
-
-var DistanceSinceFill = React.createClass({
-	handleChange: function(event) {
-		var distance = event.target.value;
-		this.props.handleChange(distance);
-	},
-	render: function() {
-		return <div>
-				<input placeholder="distance since last fill" type="text" onChange={this.handleChange} />
-			</div>;
-	}
-});
-
-var FuelAdded = React.createClass({
-	handleChange: function(event) {
-		var fuel = event.target.value;
-		this.props.handleChange(fuel);
-	},
-	render: function() {
-		return <div>
-				<input placeholder="total fuel added" type="text" onChange={this.handleChange} />
-			</div>;
-	}
-});
-
-var CurrentMPG = React.createClass({
-	render: function() {
-		return <div className="current-mpg">Your MPG: {this.props.currentMPG}</div>;
-	}
-});
+var InputDistanceSinceFill = require("../components/InputDistanceSinceFill.jsx");
+var InputFuelAdded = require("../components/InputFuelAdded.jsx");
+var DivCurrentMPG = require("../components/DivCurrentMPG.jsx");
 
 var App = React.createClass({
-	updateDistance: function(distanceInput){
+	updateDistanceValue: function(distanceInput){
 		this.setState({
 			distance: distanceInput
 		});
 	},
 	
-	updateFuel: function(fuelInput){
+	updateFuelValue: function(fuel){
 		this.setState({
-			fuel: fuelInput
+			fuel: fuel
 		});
 	},
 
@@ -73,9 +46,9 @@ var App = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<DistanceSinceFill handleChange={this.updateDistance} />
-				<FuelAdded handleChange={this.updateFuel} />
-				<CurrentMPG currentMPG={this.getCurrentMPG(this.state.distance, this.state.fuel)} />
+				<InputDistanceSinceFill updateDistanceValue={this.updateDistanceValue} />
+				<InputFuelAdded updateFuelValue={this.updateFuelValue} />
+				<DivCurrentMPG currentMPG={this.getCurrentMPG(this.state.distance, this.state.fuel)} />
 			</div>
 		);
 	}
