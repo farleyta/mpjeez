@@ -43,13 +43,37 @@ var App = React.createClass({
 		return newState.distance && newState.fuel;
 	},
 
+	submitFuelEconomy: function(event) {
+		event.preventDefault();
+
+		console.log({
+			distanceOnTank: this.state.distance,
+			amountFuelAdded: this.state.fuel,
+			cost: null,
+			user: {
+				email: "farleyta@gmail.com",
+				firstname: "Tim",
+				lastname: "Farley",
+				vehicle: {
+					make: "Subaru",
+					model: "Outback XT",
+					year: "2005"
+				}
+			}
+		});
+	},
+
 	render: function() {
+
+		var currentMPG = this.getCurrentMPG(this.state.distance, this.state.fuel);
+
 		return (
-			<div>
+			<form onSubmit={this.submitFuelEconomy}>
 				<InputDistanceSinceFill updateDistanceValue={this.updateDistanceValue} />
 				<InputFuelAdded updateFuelValue={this.updateFuelValue} />
-				<DivCurrentMPG currentMPG={this.getCurrentMPG(this.state.distance, this.state.fuel)} />
-			</div>
+				<DivCurrentMPG currentMPG={currentMPG} />
+				{currentMPG ? <button type="submit">Submit</button> : ''}
+			</form>
 		);
 	}
 });

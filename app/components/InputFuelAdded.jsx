@@ -4,7 +4,7 @@ var React = require("react");
 
 module.exports = React.createClass({
 	handleChange: function(event) {
-		// Fire handleChange function on parent component, 
+		// Fire updateFuelValue function on parent component, 
 		// passing the current fuel value
 		this.props.updateFuelValue(event.target.value);
 	},

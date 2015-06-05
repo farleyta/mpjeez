@@ -109,12 +109,36 @@
 			return newState.distance && newState.fuel;
 		},
 
+		submitFuelEconomy: function(event) {
+			event.preventDefault();
+
+			console.log({
+				distanceOnTank: this.state.distance,
+				amountFuelAdded: this.state.fuel,
+				cost: null,
+				user: {
+					email: "farleyta@gmail.com",
+					firstname: "Tim",
+					lastname: "Farley",
+					vehicle: {
+						make: "Subaru",
+						model: "Outback XT",
+						year: "2005"
+					}
+				}
+			});
+		},
+
 		render: function() {
+
+			var currentMPG = this.getCurrentMPG(this.state.distance, this.state.fuel);
+
 			return (
-				React.createElement("div", null, 
+				React.createElement("form", {onSubmit: this.submitFuelEconomy}, 
 					React.createElement(InputDistanceSinceFill, {updateDistanceValue: this.updateDistanceValue}), 
 					React.createElement(InputFuelAdded, {updateFuelValue: this.updateFuelValue}), 
-					React.createElement(DivCurrentMPG, {currentMPG: this.getCurrentMPG(this.state.distance, this.state.fuel)})
+					React.createElement(DivCurrentMPG, {currentMPG: currentMPG}), 
+					currentMPG ? React.createElement("button", {type: "submit"}, "Submit") : ''
 				)
 			);
 		}
@@ -300,6 +324,8 @@
 
 	module.exports = React.createClass({displayName: "module.exports",
 		handleChange: function(event) {
+			// Fire updateDistanceValue function on parent component, 
+			// passing the current distance value
 			this.props.updateDistanceValue(event.target.value);
 		},
 		render: function() {
@@ -317,7 +343,7 @@
 
 	module.exports = React.createClass({displayName: "module.exports",
 		handleChange: function(event) {
-			// Fire handleChange function on parent component, 
+			// Fire updateFuelValue function on parent component, 
 			// passing the current fuel value
 			this.props.updateFuelValue(event.target.value);
 		},
