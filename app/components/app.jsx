@@ -35,32 +35,39 @@ var CurrentMPG = React.createClass({
 
 var App = React.createClass({
 	updateDistance: function(distanceInput){
-		console.log("Distance:" + distanceInput);
 		this.setState({
-			distance: distanceInput,
-			currentMPG: this.getCurrentMPG()
+			distance: distanceInput
 		});
 	},
 	
 	updateFuel: function(fuelInput){
-		console.log("Fuel Added:" + fuelInput);
 		this.setState({
-			fuel: fuelInput,
-			currentMPG: this.getCurrentMPG()
+			fuel: fuelInput
 		});
 	},
 
-	getCurrentMPG: function() {
-		console.log(this.state);
-		return calculate.getFuelEconomy(this.state.distance, this.state.fuel);
+	getCurrentMPG: function(distance, fuel) {
+		if(distance && fuel) {
+			return calculate.getFuelEconomy(distance, fuel);	
+		}
+		return 0;
 	},
 
 	getInitialState: function() {
 		return {
 			distance: 0,
-			fuel: 0,
+			fuel: 0
+		}
+	},
+
+	getDefaultProps: function() {
+		return {
 			currentMPG: 0
 		}
+	},
+
+	shouldComponentUpdate: function(newProps, newState) {
+		return newState.distance && newState.fuel;
 	},
 
 	render: function() {
@@ -68,7 +75,7 @@ var App = React.createClass({
 			<div>
 				<DistanceSinceFill handleChange={this.updateDistance} />
 				<FuelAdded handleChange={this.updateFuel} />
-				<CurrentMPG currentMPG={this.state.currentMPG} />
+				<CurrentMPG currentMPG={this.getCurrentMPG(this.state.distance, this.state.fuel)} />
 			</div>
 		);
 	}
