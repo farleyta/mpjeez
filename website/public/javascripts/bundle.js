@@ -70,6 +70,7 @@
 	var calculate = __webpack_require__(4);
 	var InputDistanceSinceFill = __webpack_require__(5);
 	var InputFuelAdded = __webpack_require__(6);
+	var InputCost = __webpack_require__(162);
 	var DivCurrentMPG = __webpack_require__(7);
 
 	var App = React.createClass({displayName: "App",
@@ -117,10 +118,10 @@
 				React.createElement("form", {method: "post"}, 
 					React.createElement(InputDistanceSinceFill, {updateDistanceValue: this.updateDistanceValue}), 
 					React.createElement(InputFuelAdded, {updateFuelValue: this.updateFuelValue}), 
+					React.createElement(InputCost, null), 
 					React.createElement(DivCurrentMPG, {currentMPG: currentMPG}), 
 					React.createElement("button", {type: "submit"}, "Submit"), 
 
-					React.createElement("input", {type: "hidden", name: "cost", value: "4235"}), 
 					React.createElement("input", {type: "hidden", name: "_user", value: "550f9e8ce4b0e5b0b43a0e72"}), 
 					React.createElement("input", {type: "hidden", name: "_vehicle", value: "550f9f68e4b0e5b0b43a0e76"})
 				)
@@ -20493,6 +20494,20 @@
 	module.exports = toArray;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// Component Name: InputCost
+
+	var React = __webpack_require__(1);
+
+	module.exports = React.createClass({displayName: "module.exports",
+		render: function() {
+			return React.createElement("input", {placeholder: "cost", name: "cost", type: "text"});
+		}
+	});
 
 /***/ }
 /******/ ]);

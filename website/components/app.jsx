@@ -4,6 +4,7 @@ var React = require("react");
 var calculate = require("../../common/calculate");
 var InputDistanceSinceFill = require("./InputDistanceSinceFill.jsx");
 var InputFuelAdded = require("./InputFuelAdded.jsx");
+var InputCost = require("./InputCost.jsx");
 var DivCurrentMPG = require("./DivCurrentMPG.jsx");
 
 var App = React.createClass({
@@ -51,10 +52,10 @@ var App = React.createClass({
 			<form method="post">
 				<InputDistanceSinceFill updateDistanceValue={this.updateDistanceValue} />
 				<InputFuelAdded updateFuelValue={this.updateFuelValue} />
+				<InputCost />
 				<DivCurrentMPG currentMPG={currentMPG} />
 				<button type="submit">Submit</button>
 
-				<input type="hidden" name="cost" value="4235" />
 				<input type="hidden" name="_user" value="550f9e8ce4b0e5b0b43a0e72" />
 				<input type="hidden" name="_vehicle" value="550f9f68e4b0e5b0b43a0e76" />
 			</form>
