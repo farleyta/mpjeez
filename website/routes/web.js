@@ -13,10 +13,6 @@ module.exports = (function() {
 	var App = React.createFactory(require("../components/app"));
 
 	router.get('/', function(req, res) {
-		res.json({ message: 'MPJeez Home Page.' }); 
-	});
-
-	router.get('/test', function(req, res) {
 		var markup = React.renderToString(
 			App()
 		);
@@ -24,6 +20,12 @@ module.exports = (function() {
 		res.render('index', {
 			markup: markup
 		});
+	});
+
+	router.post('/', function(req, res){
+		console.log(req.body);
+
+		res.send("data received: " + JSON.stringify(req.body));
 	});
 
 	return router;

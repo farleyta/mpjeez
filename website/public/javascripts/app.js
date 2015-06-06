@@ -1,5 +1,5 @@
 var React = require("react"),
-    App = React.createFactory(require("../../app/components/app"));
+    App = React.createFactory(require("../../components/app"));
 
 if (typeof window !== "undefined") {
     window.onload = function() {

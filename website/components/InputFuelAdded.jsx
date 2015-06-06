@@ -9,6 +9,6 @@ module.exports = React.createClass({
 		this.props.updateFuelValue(event.target.value);
 	},
 	render: function() {
-		return <input placeholder="total fuel added" type="text" onChange={this.handleChange} />;
+		return <input placeholder="total fuel added" name="amountFuelAdded" type="text" onChange={this.handleChange} />;
 	}
 });

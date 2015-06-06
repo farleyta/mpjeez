@@ -9,6 +9,6 @@ module.exports = React.createClass({
 		this.props.updateDistanceValue(event.target.value);
 	},
 	render: function() {
-		return <input placeholder="distance since last fill" type="text" onChange={this.handleChange} />;
+		return <input placeholder="distance since last fill" name="distanceOnTank" type="text" onChange={this.handleChange} />;
 	}
 });

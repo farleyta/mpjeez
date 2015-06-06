@@ -1,6 +1,6 @@
 var mongoose	= require('mongoose');
 var Schema 		= mongoose.Schema;
-var calculate	= require('../controllers/calculate');
+var calculate	= require('../../common/calculate');
 
 var User 		= require('./user');
 var Vehicle 	= require('./vehicle');

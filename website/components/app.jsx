@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 
 var React = require("react");
-var calculate = require("../controllers/calculate");
-var InputDistanceSinceFill = require("../components/InputDistanceSinceFill.jsx");
-var InputFuelAdded = require("../components/InputFuelAdded.jsx");
-var DivCurrentMPG = require("../components/DivCurrentMPG.jsx");
+var calculate = require("../../common/calculate");
+var InputDistanceSinceFill = require("./InputDistanceSinceFill.jsx");
+var InputFuelAdded = require("./InputFuelAdded.jsx");
+var DivCurrentMPG = require("./DivCurrentMPG.jsx");
 
 var App = React.createClass({
 	updateDistanceValue: function(distanceInput){
@@ -43,36 +43,20 @@ var App = React.createClass({
 		return newState.distance && newState.fuel;
 	},
 
-	submitFuelEconomy: function(event) {
-		event.preventDefault();
-
-		console.log({
-			distanceOnTank: this.state.distance,
-			amountFuelAdded: this.state.fuel,
-			cost: null,
-			user: {
-				email: "farleyta@gmail.com",
-				firstname: "Tim",
-				lastname: "Farley",
-				vehicle: {
-					make: "Subaru",
-					model: "Outback XT",
-					year: "2005"
-				}
-			}
-		});
-	},
-
 	render: function() {
 
 		var currentMPG = this.getCurrentMPG(this.state.distance, this.state.fuel);
 
 		return (
-			<form onSubmit={this.submitFuelEconomy}>
+			<form method="post">
 				<InputDistanceSinceFill updateDistanceValue={this.updateDistanceValue} />
 				<InputFuelAdded updateFuelValue={this.updateFuelValue} />
 				<DivCurrentMPG currentMPG={currentMPG} />
 				{currentMPG ? <button type="submit">Submit</button> : ''}
+
+				<input type="hidden" name="cost" value="4235" />
+				<input type="hidden" name="user" value="550f9e8ce4b0e5b0b43a0e72" />
+				<input type="hidden" name="vehicle" value="550f9f68e4b0e5b0b43a0e76" />
 			</form>
 		);
 	}

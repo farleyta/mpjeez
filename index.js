@@ -8,7 +8,7 @@ var express = require('express'),
 	merge = require('merge');
 
 var app = express();
-var viewsDir = __dirname + '/app/views/templates';
+var viewsDir = __dirname + '/website/views/templates';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.engine('handlebars', expressHandlebars({
 app.set('view engine', 'handlebars');
 app.set('views', viewsDir);
 
-app.use(express.static('public'));
+app.use(express.static('website/public'));
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -33,8 +33,8 @@ mongoose.connect(process.env.MONGOLAB_URI);
 
 // ROUTES FOR OUR API
 // =============================================================================
-var api = require('./app/routes/api/api'); 		// Routes for the API
-var router = require('./app/routes/web'); 	// Routes for normal web calls
+var api = require('./api/routes/api'); 		// Routes for the API
+var router = require('./website/routes/web'); 	// Routes for normal web calls
 
 // Middleware for all requests
 router.use(function(req, res, next) {

@@ -1,6 +1,6 @@
 module.exports = function(api) {
 
-	var Entry = require('../../models/entry');
+	var Entry = require('../schema/entry');
 
 	// on routes that end in /entries	
 	// ----------------------------------------------------
