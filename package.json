@@ -16,7 +16,8 @@
     "react": "^0.13.2",
     "node-jsx": "^0.13.2",
     "webpack": "^1.8.11",
-    "jsx-loader": "^0.13.2"
+    "jsx-loader": "^0.13.2",
+    "request": "^2.57.0"
   },
   "engines": {
     "node": "0.10.x"

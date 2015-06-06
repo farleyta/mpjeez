@@ -7,7 +7,9 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	merge = require('merge');
 
-var app = express();
+// circular dependency: http://stackoverflow.com/questions/10090414/express-how-to-pass-app-instance-to-routes-from-a-different-file
+var app = module.exports = express();
+
 var viewsDir = __dirname + '/website/views/templates';
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,11 +35,11 @@ mongoose.connect(process.env.MONGOLAB_URI);
 
 // ROUTES FOR OUR API
 // =============================================================================
-var api = require('./api/routes/api'); 		// Routes for the API
-var router = require('./website/routes/web'); 	// Routes for normal web calls
+var api = require('./api/routes/api'); 				// Routes for the API
+var website = require('./website/routes/website'); 	// Routes for normal web calls
 
 // Middleware for all requests
-router.use(function(req, res, next) {
+website.use(function(req, res, next) {
 	// do logging
 	console.log('Do some middleware stuff here.');
 	next(); // make sure we go to the next routes and don't stop here
@@ -51,7 +53,7 @@ api.use(function(req, res, next) {
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', api);
-app.use('/', router);
+app.use('/', website);
 
 
 // START THE SERVER

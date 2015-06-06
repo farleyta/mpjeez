@@ -52,11 +52,11 @@ var App = React.createClass({
 				<InputDistanceSinceFill updateDistanceValue={this.updateDistanceValue} />
 				<InputFuelAdded updateFuelValue={this.updateFuelValue} />
 				<DivCurrentMPG currentMPG={currentMPG} />
-				{currentMPG ? <button type="submit">Submit</button> : ''}
+				<button type="submit">Submit</button>
 
 				<input type="hidden" name="cost" value="4235" />
-				<input type="hidden" name="user" value="550f9e8ce4b0e5b0b43a0e72" />
-				<input type="hidden" name="vehicle" value="550f9f68e4b0e5b0b43a0e76" />
+				<input type="hidden" name="_user" value="550f9e8ce4b0e5b0b43a0e72" />
+				<input type="hidden" name="_vehicle" value="550f9f68e4b0e5b0b43a0e76" />
 			</form>
 		);
 	}

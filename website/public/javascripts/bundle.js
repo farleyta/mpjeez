@@ -118,11 +118,11 @@
 					React.createElement(InputDistanceSinceFill, {updateDistanceValue: this.updateDistanceValue}), 
 					React.createElement(InputFuelAdded, {updateFuelValue: this.updateFuelValue}), 
 					React.createElement(DivCurrentMPG, {currentMPG: currentMPG}), 
-					currentMPG ? React.createElement("button", {type: "submit"}, "Submit") : '', 
+					React.createElement("button", {type: "submit"}, "Submit"), 
 
 					React.createElement("input", {type: "hidden", name: "cost", value: "4235"}), 
-					React.createElement("input", {type: "hidden", name: "user", value: "550f9e8ce4b0e5b0b43a0e72"}), 
-					React.createElement("input", {type: "hidden", name: "vehicle", value: "550f9f68e4b0e5b0b43a0e76"})
+					React.createElement("input", {type: "hidden", name: "_user", value: "550f9e8ce4b0e5b0b43a0e72"}), 
+					React.createElement("input", {type: "hidden", name: "_vehicle", value: "550f9f68e4b0e5b0b43a0e76"})
 				)
 			);
 		}

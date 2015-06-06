@@ -1,7 +1,9 @@
 //================================== routes for index and partials================================
-var express = require('express'),
+var React = require('react'),
+	express = require('express'),
 	router = express.Router(),
-	React = require('react');
+	app = require('../../index'),
+	request = require('request');
 
 	require("node-jsx").install({
 		harmony: true,
@@ -11,6 +13,11 @@ var express = require('express'),
 module.exports = (function() {
 
 	var App = React.createFactory(require("../components/app"));
+
+	var apiRequest = request.defaults({
+		baseUrl: 'http://localhost:' + app.get('port') + '/api',
+		json: true
+	});
 
 	router.get('/', function(req, res) {
 		var markup = React.renderToString(
@@ -23,9 +30,12 @@ module.exports = (function() {
 	});
 
 	router.post('/', function(req, res){
-		console.log(req.body);
-
-		res.send("data received: " + JSON.stringify(req.body));
+		apiRequest.post({
+			url: '/entries', 
+			body: req.body
+		}, function(apiReqErr, apiReqRes, apiReqBody){
+			res.send(apiReqBody);
+		});
 	});
 
 	return router;
