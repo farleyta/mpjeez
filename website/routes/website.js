@@ -14,6 +14,7 @@ module.exports = (function() {
 
 	var App = React.createFactory(require("../components/app"));
 
+	// Set default values for API requests
 	var apiRequest = request.defaults({
 		baseUrl: 'http://localhost:' + app.get('port') + '/api',
 		json: true
@@ -30,10 +31,13 @@ module.exports = (function() {
 	});
 
 	router.post('/', function(req, res){
+
+		// Take form submission data and post it to the API
 		apiRequest.post({
 			url: '/entries', 
 			body: req.body
 		}, function(apiReqErr, apiReqRes, apiReqBody){
+			// respond to the client with response from API (for now)
 			res.send(apiReqBody);
 		});
 	});
