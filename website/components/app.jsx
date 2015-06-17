@@ -49,7 +49,7 @@ var App = React.createClass({
 		var currentMPG = this.getCurrentMPG(this.state.distance, this.state.fuel);
 
 		return (
-			<form method="post">
+			<form method="post" action="/entries">
 				<InputDistanceSinceFill updateDistanceValue={this.updateDistanceValue} />
 				<InputFuelAdded updateFuelValue={this.updateFuelValue} />
 				<InputCost />
