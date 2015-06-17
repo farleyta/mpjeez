@@ -30,7 +30,7 @@ module.exports = (function() {
 		});
 	});
 
-	router.post('/', function(req, res){
+	router.post('/entries', function(req, res){
 
 		// Take form submission data and post it to the API
 		apiRequest.post({
