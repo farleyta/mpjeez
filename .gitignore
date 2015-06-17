@@ -1,2 +1,4 @@
 node_modules
 .env
+
+website/public/javascripts/bundle.js
