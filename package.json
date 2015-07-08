@@ -4,7 +4,8 @@
   "description": "A small utility for tracking fuel economy.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "echo postinstall time; ./.bin/webpack --progress --colors"
   },
   "dependencies": {
     "express": "~4.9.x",
